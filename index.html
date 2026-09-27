@@ -7,18 +7,28 @@
 <meta name="apple-mobile-web-app-title" content="Mes livres">
 <link rel="apple-touch-icon" href="icon.png">
 <title>Mes livres</title>
+<script>
+  document.documentElement.setAttribute("data-theme", localStorage.getItem("ebook:library:theme") ||
+    (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+</script>
 <style>
   :root { --bg:#f4f3ee; --card:#fff; --text:#2d2d2a; --muted:#80807a; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#1d1e1c; --card:#2a2b28; --text:#e6e6e0; --muted:#9a9a92; } }
+  html[data-theme="dark"] { --bg:#1d1e1c; --card:#2a2b28; --text:#e6e6e0; --muted:#9a9a92; color-scheme:dark; }
+  header { display:flex; align-items:center; justify-content:space-between; margin:0 0 22px; }
+  header h1 { margin:0; }
+  #theme { font:inherit; font-size:17px; width:38px; height:38px; border-radius:50%; border:0; cursor:pointer;
+           background:var(--card); color:var(--text); box-shadow:0 1px 3px rgba(0,0,0,.12); }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--text);
          font:16px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   main { max-width:1040px; margin:0 auto; padding:32px 18px 48px; }
   h1 { font-size:28px; margin:0 0 22px; letter-spacing:-.01em; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:26px 20px; }
-  @media (min-width:700px) { .grid { grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); } }
-  a.book { color:inherit; text-decoration:none; display:block; }
-  .cover { position:relative; aspect-ratio:3/4; border-radius:6px 10px 10px 6px; overflow:hidden;
+  .shelf { display:flex; flex-wrap:wrap; gap:34px 44px; align-items:flex-start; }
+  .series h2 { font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+               margin:0 0 10px; padding-bottom:6px; border-bottom:1px solid rgba(128,128,120,.25); }
+  .series .books { display:flex; flex-wrap:wrap; gap:22px 14px; }
+  a.book { color:inherit; text-decoration:none; display:block; width:clamp(128px, 40vw, 172px); }
+  .cover { position:relative; aspect-ratio:3/4; filter:saturate(.6); border-radius:6px 10px 10px 6px; overflow:hidden;
            background:linear-gradient(150deg, var(--c), color-mix(in srgb, var(--c) 55%, #000));
            box-shadow:0 1px 2px rgba(0,0,0,.12), 0 8px 22px rgba(0,0,0,.14);
            transition:transform .18s ease, box-shadow .18s ease; }
@@ -39,15 +49,26 @@
   footer { color:var(--muted); font-size:13px; margin-top:36px; }
 </style></head>
 <body><main>
-<h1>Mes livres</h1>
+<header><h1>Mes livres</h1><button id="theme"></button></header>
 <form class="unlock" hidden><span>🔒 Couvertures :</span>
   <input type="password" placeholder="Mot de passe" autocomplete="current-password">
   <button>Afficher</button><span class="msg"></span></form>
-<div class="grid">
-<a class="book" href="https://moeinsorkhei.github.io/ebook-abc-delf-b2/">
-  <div class="cover" style="--c:#b07c74" data-src="covers/ebook-abc-delf-b2.jpg.enc"><div class="ph">ABC DELF B2</div></div>
-  <div class="t">ABC DELF B2</div><div class="m">CLE International · B2 (DELF B2 exam preparation) · 3 unités</div>
+<div class="shelf">
+<section class="series"><h2>En dialogues</h2><div class="books">
+<a class="book" href="https://moeinsorkhei.github.io/ebook-ged-b1/">
+  <div class="cover" style="--c:#4f8a8b" data-src="covers/ebook-ged-b1.jpg.enc"><div class="ph">Grammaire en dialogues — B1</div></div>
+  <div class="t">Grammaire en dialogues — B1</div><div class="m">CLE International · B1 · 40 unités</div>
 </a>
+<a class="book" href="https://moeinsorkhei.github.io/ebook-ged-avance/">
+  <div class="cover" style="--c:#7a6f9b" data-src="covers/ebook-ged-avance.jpg.enc"><div class="ph">Grammaire en dialogues — Avancé</div></div>
+  <div class="t">Grammaire en dialogues — Avancé</div><div class="m">CLE International · B2-C1 · 44 unités</div>
+</a>
+<a class="book" href="https://moeinsorkhei.github.io/ebook-vocab-dialogues-b1/">
+  <div class="cover" style="--c:#a87c5f" data-src="covers/ebook-vocab-dialogues-b1.jpg.enc"><div class="ph">Vocabulaire en dialogues — B1</div></div>
+  <div class="t">Vocabulaire en dialogues — B1</div><div class="m">CLE International · B1 · 3 unités</div>
+</a>
+</div></section>
+<section class="series"><h2>Progressive</h2><div class="books">
 <a class="book" href="https://moeinsorkhei.github.io/ebook-cp-avance/">
   <div class="cover" style="--c:#86a06e" data-src="covers/ebook-cp-avance.jpg.enc"><div class="ph">Communication progressive du français — Avancé</div></div>
   <div class="t">Communication progressive du français — Avancé</div><div class="m">CLE International · B2-C1 · 55 unités</div>
@@ -56,23 +77,33 @@
   <div class="cover" style="--c:#5878a4" data-src="covers/ebook-conjugaison-progressive.jpg.enc"><div class="ph">Conjugaison progressive du français</div></div>
   <div class="t">Conjugaison progressive du français</div><div class="m">CLE International · A2-B2 · 52 unités</div>
 </a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-ged-avance/">
-  <div class="cover" style="--c:#7a6f9b" data-src="covers/ebook-ged-avance.jpg.enc"><div class="ph">Grammaire en dialogues — Avancé</div></div>
-  <div class="t">Grammaire en dialogues — Avancé</div><div class="m">CLE International · B2-C1 · 44 unités</div>
+</div></section>
+<section class="series"><h2>ABC DELF B2</h2><div class="books">
+<a class="book" href="https://moeinsorkhei.github.io/ebook-abc-delf-b2/">
+  <div class="cover" style="--c:#b07c74" data-src="covers/ebook-abc-delf-b2.jpg.enc"><div class="ph">ABC DELF B2</div></div>
+  <div class="t">ABC DELF B2</div><div class="m">CLE International · B2 (DELF B2 exam preparation) · 3 unités</div>
 </a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-ged-b1/">
-  <div class="cover" style="--c:#4f8a8b" data-src="covers/ebook-ged-b1.jpg.enc"><div class="ph">Grammaire en dialogues — B1</div></div>
-  <div class="t">Grammaire en dialogues — B1</div><div class="m">CLE International · B1 · 40 unités</div>
-</a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-vocab-dialogues-b1/">
-  <div class="cover" style="--c:#a87c5f" data-src="covers/ebook-vocab-dialogues-b1.jpg.enc"><div class="ph">Vocabulaire en dialogues — B1</div></div>
-  <div class="t">Vocabulaire en dialogues — B1</div><div class="m">CLE International · B1 · 3 unités</div>
-</a>
+</div></section>
 </div>
-<footer>Même mot de passe pour tous les livres · mis à jour le 27/09/2026 22:54</footer>
+<footer>Même mot de passe pour tous les livres · mis à jour le 27/09/2026 22:57</footer>
 </main>
 <script>
-var LIB = {"salt": "FMwyYfQGwwmsfn4WArofQA==", "iterations": 250000, "check": "dAHprLLGKGl6NTezq6+hntiE+Hn/KBFphz6EsHUwqpIRRkYO1gouFhBzm+zq", "books": [{"path": "/ebook-abc-delf-b2/", "salt": "qzyXXOWeH71HDfTJLvnKNA=="}, {"path": "/ebook-cp-avance/", "salt": "N5zoUYKQsyw3XY8EyLymqA=="}, {"path": "/ebook-conjugaison-progressive/", "salt": "p/q3zCJM8W7Zp6gWqKMvhw=="}, {"path": "/ebook-ged-avance/", "salt": "WYbz/O1PKwS0hg5h1oXIaw=="}, {"path": "/ebook-ged-b1/", "salt": "t4QXDmgClOphD+g0g31olw=="}, {"path": "/ebook-vocab-dialogues-b1/", "salt": "2rXGyzY8HidTu49+VfzWAQ=="}]};
+var LIB = {"salt": "FMwyYfQGwwmsfn4WArofQA==", "iterations": 250000, "check": "dAHprLLGKGl6NTezq6+hntiE+Hn/KBFphz6EsHUwqpIRRkYO1gouFhBzm+zq", "books": [{"path": "/ebook-abc-delf-b2/", "salt": "qzyXXOWeH71HDfTJLvnKNA=="}, {"path": "/ebook-cp-avance/", "salt": "N5zoUYKQsyw3XY8EyLymqA=="}, {"path": "/ebook-conjugaison-progressive/", "salt": "p/q3zCJM8W7Zp6gWqKMvhw=="}, {"path": "/ebook-ged-b1/", "salt": "t4QXDmgClOphD+g0g31olw=="}, {"path": "/ebook-ged-avance/", "salt": "WYbz/O1PKwS0hg5h1oXIaw=="}, {"path": "/ebook-vocab-dialogues-b1/", "salt": "2rXGyzY8HidTu49+VfzWAQ=="}]};
+(function () {
+  var root = document.documentElement, btn = document.getElementById("theme");
+  function paint() {
+    var dark = root.getAttribute("data-theme") === "dark";
+    btn.textContent = dark ? "☀︎" : "☾";
+    btn.title = dark ? "Thème clair" : "Thème sombre";
+  }
+  btn.onclick = function () {
+    var t = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", t);
+    localStorage.setItem("ebook:library:theme", t);
+    paint();
+  };
+  paint();
+})();
 (function () {
   var KEY = "ebook:library:key:" + LIB.salt;
   function b64(s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); }
