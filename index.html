@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ebooks">
+<link rel="apple-touch-icon" href="icon.png">
+<title>Ebooks</title>
+<style>
+  :root { --bg:#f6f6f2; --card:#fff; --text:#2d2d2a; --muted:#80807a; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1d1e1c; --card:#2a2b28; --text:#e6e6e0; --muted:#9a9a92; } }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font:17px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:28px 16px 48px; }
+  h1 { font-size:26px; margin:0 0 20px; }
+  a.book { display:flex; align-items:center; gap:14px; padding:14px 16px; margin-bottom:12px;
+           background:var(--card); border-radius:14px; color:inherit; text-decoration:none;
+           box-shadow:0 1px 3px rgba(0,0,0,.06); border-left:5px solid var(--c); }
+  a.book:hover { transform:translateY(-1px); }
+  a.book img { width:52px; height:52px; border-radius:12px; flex:none; }
+  .t { font-weight:600; }
+  .m { color:var(--muted); font-size:14px; margin-top:2px; }
+  footer { color:var(--muted); font-size:13px; margin-top:24px; }
+</style></head>
+<body><main>
+<h1>Mes ebooks</h1>
+<a class="book" href="https://moeinsorkhei.github.io/ebook-cp-avance/" style="--c:#86a06e">
+  <img src="icons/ebook-cp-avance.png" alt="">
+  <div><div class="t">Communication progressive du français — Avancé</div><div class="m">CLE International · B2-C1 · 9 unités</div></div>
+</a>
+<footer>Même mot de passe pour tous les livres · mis à jour le 27/09/2026 19:09</footer>
+</main></body></html>
