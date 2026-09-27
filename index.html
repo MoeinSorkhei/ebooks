@@ -8,46 +8,131 @@
 <link rel="apple-touch-icon" href="icon.png">
 <title>Mes livres</title>
 <style>
-  :root { --bg:#f6f6f2; --card:#fff; --text:#2d2d2a; --muted:#80807a; }
+  :root { --bg:#f4f3ee; --card:#fff; --text:#2d2d2a; --muted:#80807a; }
   @media (prefers-color-scheme: dark) { :root { --bg:#1d1e1c; --card:#2a2b28; --text:#e6e6e0; --muted:#9a9a92; } }
+  * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--text);
-         font:17px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { max-width:760px; margin:0 auto; padding:28px 16px 48px; }
-  h1 { font-size:26px; margin:0 0 20px; }
-  a.book { display:flex; align-items:center; gap:14px; padding:14px 16px; margin-bottom:12px;
-           background:var(--card); border-radius:14px; color:inherit; text-decoration:none;
-           box-shadow:0 1px 3px rgba(0,0,0,.06); border-left:5px solid var(--c); }
-  a.book:hover { transform:translateY(-1px); }
-  a.book img { width:52px; height:52px; border-radius:12px; flex:none; }
-  .t { font-weight:600; }
-  .m { color:var(--muted); font-size:14px; margin-top:2px; }
-  footer { color:var(--muted); font-size:13px; margin-top:24px; }
+         font:16px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:1040px; margin:0 auto; padding:32px 18px 48px; }
+  h1 { font-size:28px; margin:0 0 22px; letter-spacing:-.01em; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:26px 20px; }
+  @media (min-width:700px) { .grid { grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); } }
+  a.book { color:inherit; text-decoration:none; display:block; }
+  .cover { position:relative; aspect-ratio:3/4; border-radius:6px 10px 10px 6px; overflow:hidden;
+           background:linear-gradient(150deg, var(--c), color-mix(in srgb, var(--c) 55%, #000));
+           box-shadow:0 1px 2px rgba(0,0,0,.12), 0 8px 22px rgba(0,0,0,.14);
+           transition:transform .18s ease, box-shadow .18s ease; }
+  .cover::after { content:""; position:absolute; inset:0 auto 0 0; width:7px;
+                  background:linear-gradient(90deg, rgba(0,0,0,.18), rgba(255,255,255,.08), transparent); }
+  .cover .ph { position:absolute; inset:0; padding:16px 14px; color:#fff; font-weight:700; font-size:17px;
+               line-height:1.2; text-shadow:0 1px 2px rgba(0,0,0,.25); }
+  .cover img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .35s; }
+  .cover img.on { opacity:1; }
+  a.book:hover .cover { transform:translateY(-3px); box-shadow:0 2px 4px rgba(0,0,0,.12), 0 14px 30px rgba(0,0,0,.18); }
+  .t { font-weight:600; font-size:15px; margin-top:10px; }
+  .m { color:var(--muted); font-size:13px; margin-top:2px; }
+  form.unlock { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:-6px 0 22px; color:var(--muted); font-size:14px; }
+  form.unlock[hidden] { display:none; }
+  form.unlock input { font:inherit; padding:6px 10px; border:1px solid rgba(0,0,0,.15); border-radius:8px;
+                      background:var(--card); color:var(--text); width:14rem; }
+  form.unlock button { font:inherit; padding:6px 12px; border:0; border-radius:8px; background:#5b8c3a; color:#fff; }
+  footer { color:var(--muted); font-size:13px; margin-top:36px; }
 </style></head>
 <body><main>
 <h1>Mes livres</h1>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-abc-delf-b2/" style="--c:#b07c74">
-  <img src="icons/ebook-abc-delf-b2.png" alt="">
-  <div><div class="t">ABC DELF B2</div><div class="m">CLE International · B2 (DELF B2 exam preparation) · 3 unités</div></div>
+<form class="unlock" hidden><span>🔒 Couvertures :</span>
+  <input type="password" placeholder="Mot de passe" autocomplete="current-password">
+  <button>Afficher</button><span class="msg"></span></form>
+<div class="grid">
+<a class="book" href="https://moeinsorkhei.github.io/ebook-abc-delf-b2/">
+  <div class="cover" style="--c:#b07c74" data-src="covers/ebook-abc-delf-b2.jpg.enc"><div class="ph">ABC DELF B2</div></div>
+  <div class="t">ABC DELF B2</div><div class="m">CLE International · B2 (DELF B2 exam preparation) · 3 unités</div>
 </a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-cp-avance/" style="--c:#86a06e">
-  <img src="icons/ebook-cp-avance.png" alt="">
-  <div><div class="t">Communication progressive du français — Avancé</div><div class="m">CLE International · B2-C1 · 55 unités</div></div>
+<a class="book" href="https://moeinsorkhei.github.io/ebook-cp-avance/">
+  <div class="cover" style="--c:#86a06e" data-src="covers/ebook-cp-avance.jpg.enc"><div class="ph">Communication progressive du français — Avancé</div></div>
+  <div class="t">Communication progressive du français — Avancé</div><div class="m">CLE International · B2-C1 · 55 unités</div>
 </a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-conjugaison-progressive/" style="--c:#5878a4">
-  <img src="icons/ebook-conjugaison-progressive.png" alt="">
-  <div><div class="t">Conjugaison progressive du français</div><div class="m">CLE International · A2-B2 · 52 unités</div></div>
+<a class="book" href="https://moeinsorkhei.github.io/ebook-conjugaison-progressive/">
+  <div class="cover" style="--c:#5878a4" data-src="covers/ebook-conjugaison-progressive.jpg.enc"><div class="ph">Conjugaison progressive du français</div></div>
+  <div class="t">Conjugaison progressive du français</div><div class="m">CLE International · A2-B2 · 52 unités</div>
 </a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-ged-avance/" style="--c:#7a6f9b">
-  <img src="icons/ebook-ged-avance.png" alt="">
-  <div><div class="t">Grammaire en dialogues — Avancé</div><div class="m">CLE International · B2-C1 · 44 unités</div></div>
+<a class="book" href="https://moeinsorkhei.github.io/ebook-ged-avance/">
+  <div class="cover" style="--c:#7a6f9b" data-src="covers/ebook-ged-avance.jpg.enc"><div class="ph">Grammaire en dialogues — Avancé</div></div>
+  <div class="t">Grammaire en dialogues — Avancé</div><div class="m">CLE International · B2-C1 · 44 unités</div>
 </a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-ged-b1/" style="--c:#4f8a8b">
-  <img src="icons/ebook-ged-b1.png" alt="">
-  <div><div class="t">Grammaire en dialogues — B1</div><div class="m">CLE International · B1 · 40 unités</div></div>
+<a class="book" href="https://moeinsorkhei.github.io/ebook-ged-b1/">
+  <div class="cover" style="--c:#4f8a8b" data-src="covers/ebook-ged-b1.jpg.enc"><div class="ph">Grammaire en dialogues — B1</div></div>
+  <div class="t">Grammaire en dialogues — B1</div><div class="m">CLE International · B1 · 40 unités</div>
 </a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-vocab-dialogues-b1/" style="--c:#a87c5f">
-  <img src="icons/ebook-vocab-dialogues-b1.png" alt="">
-  <div><div class="t">Vocabulaire en dialogues — B1</div><div class="m">CLE International · B1 · 3 unités</div></div>
+<a class="book" href="https://moeinsorkhei.github.io/ebook-vocab-dialogues-b1/">
+  <div class="cover" style="--c:#a87c5f" data-src="covers/ebook-vocab-dialogues-b1.jpg.enc"><div class="ph">Vocabulaire en dialogues — B1</div></div>
+  <div class="t">Vocabulaire en dialogues — B1</div><div class="m">CLE International · B1 · 3 unités</div>
 </a>
-<footer>Même mot de passe pour tous les livres · mis à jour le 27/09/2026 22:52</footer>
-</main></body></html>
+</div>
+<footer>Même mot de passe pour tous les livres · mis à jour le 27/09/2026 22:54</footer>
+</main>
+<script>
+var LIB = {"salt": "FMwyYfQGwwmsfn4WArofQA==", "iterations": 250000, "check": "dAHprLLGKGl6NTezq6+hntiE+Hn/KBFphz6EsHUwqpIRRkYO1gouFhBzm+zq", "books": [{"path": "/ebook-abc-delf-b2/", "salt": "qzyXXOWeH71HDfTJLvnKNA=="}, {"path": "/ebook-cp-avance/", "salt": "N5zoUYKQsyw3XY8EyLymqA=="}, {"path": "/ebook-conjugaison-progressive/", "salt": "p/q3zCJM8W7Zp6gWqKMvhw=="}, {"path": "/ebook-ged-avance/", "salt": "WYbz/O1PKwS0hg5h1oXIaw=="}, {"path": "/ebook-ged-b1/", "salt": "t4QXDmgClOphD+g0g31olw=="}, {"path": "/ebook-vocab-dialogues-b1/", "salt": "2rXGyzY8HidTu49+VfzWAQ=="}]};
+(function () {
+  var KEY = "ebook:library:key:" + LIB.salt;
+  function b64(s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); }
+  function tob64(buf) { return btoa(String.fromCharCode.apply(null, new Uint8Array(buf))); }
+  function decrypt(key, bytes) {
+    return crypto.subtle.decrypt({ name: "AES-GCM", iv: bytes.slice(0, 12) }, key, bytes.slice(12));
+  }
+  function derive(pw, salt, iterations) {
+    return crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"])
+      .then(function (base) {
+        return crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(salt), iterations: iterations, hash: "SHA-256" },
+          base, { name: "AES-GCM", length: 256 }, true, ["decrypt"]);
+      });
+  }
+  function verify(key) { return decrypt(key, b64(LIB.check)).then(function () { return key; }); }
+  function covers(key) {
+    document.querySelectorAll(".cover[data-src]").forEach(function (c) {
+      fetch(c.dataset.src).then(function (r) { if (!r.ok) throw 0; return r.arrayBuffer(); })
+        .then(function (buf) { return decrypt(key, new Uint8Array(buf)); })
+        .then(function (jpg) {
+          var img = new Image();
+          img.alt = "";
+          img.onload = function () { img.className = "on"; };
+          img.src = URL.createObjectURL(new Blob([jpg], { type: "image/jpeg" }));
+          c.appendChild(img);
+        }).catch(function () {});
+    });
+  }
+  function rememberBooks(pw) {
+    // books keep their key under "ebook:<pathname>:key:<salt>"
+    return Promise.all(LIB.books.map(function (b) {
+      return derive(pw, b.salt, LIB.iterations).then(function (k) { return crypto.subtle.exportKey("raw", k); })
+        .then(function (raw) {
+          var v = JSON.stringify(tob64(raw));
+          [b.path, b.path + "index.html"].forEach(function (p) {
+            try { localStorage.setItem("ebook:" + p + ":key:" + b.salt, v); } catch (e) {}
+          });
+        });
+    }));
+  }
+  var form = document.querySelector("form.unlock"), input = form.querySelector("input"), msg = form.querySelector(".msg");
+  var saved = localStorage.getItem(KEY);
+  (saved ? crypto.subtle.importKey("raw", b64(saved), { name: "AES-GCM" }, true, ["decrypt"]).then(verify) : Promise.reject())
+    .then(covers)
+    .catch(function () {
+      form.hidden = false;
+      form.onsubmit = function (e) {
+        e.preventDefault();
+        var pw = input.value;
+        msg.textContent = "…";
+        derive(pw, LIB.salt, LIB.iterations).then(verify).then(function (key) {
+          return crypto.subtle.exportKey("raw", key).then(function (raw) {
+            localStorage.setItem(KEY, tob64(raw));
+            form.hidden = true;
+            covers(key);
+            return rememberBooks(pw);
+          });
+        }).catch(function () { msg.textContent = "Mot de passe incorrect."; input.select(); });
+      };
+    });
+})();
+</script>
+</body></html>
