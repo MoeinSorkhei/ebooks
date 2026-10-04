@@ -27,6 +27,8 @@
   .series h2 { font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
                margin:0 0 10px; padding-bottom:6px; border-bottom:1px solid rgba(128,128,120,.25); }
   .series .books { display:flex; flex-wrap:wrap; gap:22px 14px; }
+  .series .subs { display:flex; flex-wrap:wrap; gap:26px 40px; align-items:flex-start; }
+  .series h3 { font-size:12px; font-weight:500; color:var(--muted); margin:0 0 8px; }
   a.book { color:inherit; text-decoration:none; display:block; width:clamp(128px, 40vw, 172px); }
   .cover { position:relative; aspect-ratio:3/4; filter:saturate(.6); border-radius:6px 10px 10px 6px; overflow:hidden;
            background:linear-gradient(150deg, var(--c), color-mix(in srgb, var(--c) 55%, #000));
@@ -54,7 +56,8 @@
   <input type="password" placeholder="Mot de passe" autocomplete="current-password">
   <button>Afficher</button><span class="msg"></span></form>
 <div class="shelf">
-<section class="series"><h2>Progressive</h2><div class="books">
+<section class="series"><h2>Progressive</h2><div class="subs">
+<div class="sub"><h3>Communication</h3><div class="books">
 <a class="book" href="https://moeinsorkhei.github.io/ebook-cp-intermediaire/">
   <div class="cover" style="--c:#7f97a8" data-src="covers/ebook-cp-intermediaire.jpg.enc"><div class="ph">Communication progressive du français — Intermédiaire</div></div>
   <div class="t">Communication progressive du français — Intermédiaire</div><div class="m">CLE International · A2-B1 · 52 unités</div>
@@ -67,10 +70,8 @@
   <div class="cover" style="--c:#a08f74" data-src="covers/ebook-cp-perfectionnement.jpg.enc"><div class="ph">Communication progressive du français — Perfectionnement</div></div>
   <div class="t">Communication progressive du français — Perfectionnement</div><div class="m">CLE International · C1-C2 · 52 unités</div>
 </a>
-<a class="book" href="https://moeinsorkhei.github.io/ebook-conjugaison-progressive/">
-  <div class="cover" style="--c:#5878a4" data-src="covers/ebook-conjugaison-progressive.jpg.enc"><div class="ph">Conjugaison progressive du français</div></div>
-  <div class="t">Conjugaison progressive du français</div><div class="m">CLE International · A2-B2 · 52 unités</div>
-</a>
+</div></div>
+<div class="sub"><h3>Grammaire</h3><div class="books">
 <a class="book" href="https://moeinsorkhei.github.io/ebook-gp-avance/">
   <div class="cover" style="--c:#8f86a8" data-src="covers/ebook-gp-avance.jpg.enc"><div class="ph">Grammaire progressive du français — Avancé</div></div>
   <div class="t">Grammaire progressive du français — Avancé</div><div class="m">CLE International · B1-B2 · 39 unités</div>
@@ -79,8 +80,16 @@
   <div class="cover" style="--c:#7d8fa0" data-src="covers/ebook-gp-perfectionnement.jpg.enc"><div class="ph">Grammaire progressive du français — Perfectionnement</div></div>
   <div class="t">Grammaire progressive du français — Perfectionnement</div><div class="m">CLE International · B2-C1 · 93 unités</div>
 </a>
+</div></div>
+<div class="sub"><h3>Conjugaison</h3><div class="books">
+<a class="book" href="https://moeinsorkhei.github.io/ebook-conjugaison-progressive/">
+  <div class="cover" style="--c:#5878a4" data-src="covers/ebook-conjugaison-progressive.jpg.enc"><div class="ph">Conjugaison progressive du français</div></div>
+  <div class="t">Conjugaison progressive du français</div><div class="m">CLE International · A2-B2 · 52 unités</div>
+</a>
+</div></div>
 </div></section>
-<section class="series"><h2>En dialogues</h2><div class="books">
+<section class="series"><h2>En dialogues</h2><div class="subs">
+<div class="sub"><h3>Grammaire</h3><div class="books">
 <a class="book" href="https://moeinsorkhei.github.io/ebook-ged-b1/">
   <div class="cover" style="--c:#4f8a8b" data-src="covers/ebook-ged-b1.jpg.enc"><div class="ph">Grammaire en dialogues — B1</div></div>
   <div class="t">Grammaire en dialogues — B1</div><div class="m">CLE International · B1 · 40 unités</div>
@@ -89,10 +98,13 @@
   <div class="cover" style="--c:#7a6f9b" data-src="covers/ebook-ged-avance.jpg.enc"><div class="ph">Grammaire en dialogues — Avancé</div></div>
   <div class="t">Grammaire en dialogues — Avancé</div><div class="m">CLE International · B2-C1 · 44 unités</div>
 </a>
+</div></div>
+<div class="sub"><h3>Vocabulaire</h3><div class="books">
 <a class="book" href="https://moeinsorkhei.github.io/ebook-vocab-dialogues-b1/">
   <div class="cover" style="--c:#a87c5f" data-src="covers/ebook-vocab-dialogues-b1.jpg.enc"><div class="ph">Vocabulaire en dialogues — B1</div></div>
   <div class="t">Vocabulaire en dialogues — B1</div><div class="m">CLE International · B1 · 32 unités</div>
 </a>
+</div></div>
 </div></section>
 <section class="series"><h2>ABC DELF B2</h2><div class="books">
 <a class="book" href="https://moeinsorkhei.github.io/ebook-abc-delf-b2/">
@@ -101,7 +113,7 @@
 </a>
 </div></section>
 </div>
-<footer>Même mot de passe pour tous les livres · mis à jour le 04/10/2026 20:15</footer>
+<footer>Même mot de passe pour tous les livres · mis à jour le 04/10/2026 21:41</footer>
 </main>
 <script>
 var LIB = {"salt": "FMwyYfQGwwmsfn4WArofQA==", "iterations": 250000, "check": "dAHprLLGKGl6NTezq6+hntiE+Hn/KBFphz6EsHUwqpIRRkYO1gouFhBzm+zq", "books": [{"path": "/ebook-abc-delf-b2/", "salt": "qzyXXOWeH71HDfTJLvnKNA=="}, {"path": "/ebook-cp-intermediaire/", "salt": "sJ+FQ0ZFypCTIdAY/nALMA=="}, {"path": "/ebook-cp-avance/", "salt": "N5zoUYKQsyw3XY8EyLymqA=="}, {"path": "/ebook-cp-perfectionnement/", "salt": "rvQkw5VI6SIiZzkKaPq0YA=="}, {"path": "/ebook-conjugaison-progressive/", "salt": "p/q3zCJM8W7Zp6gWqKMvhw=="}, {"path": "/ebook-ged-b1/", "salt": "t4QXDmgClOphD+g0g31olw=="}, {"path": "/ebook-ged-avance/", "salt": "WYbz/O1PKwS0hg5h1oXIaw=="}, {"path": "/ebook-gp-avance/", "salt": "qNbUkl1CLC/7fI0HlyIzPA=="}, {"path": "/ebook-gp-perfectionnement/", "salt": "rGpv9tJwvZ+DsupI3T3Ntw=="}, {"path": "/ebook-vocab-dialogues-b1/", "salt": "2rXGyzY8HidTu49+VfzWAQ=="}]};
